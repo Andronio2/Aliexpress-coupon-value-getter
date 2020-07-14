@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Aliexpress coupon value getter
 // @namespace    http://tampermonkey.net/
-// @version      0.2
+// @version      0.3
 // @description  Получает значение купона
 // @author       Andronio
 // @homepage     https://github.com/Andronio2/Aliexpress-coupon-value-getter
