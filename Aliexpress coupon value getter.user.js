@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Aliexpress coupon value getter
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  Получает значение купона
 // @author       Andronio
 // @homepage     https://github.com/Andronio2/Aliexpress-coupon-value-getter
@@ -19,7 +19,7 @@
     if (coupons.length) {
         for (let i = 0; i < coupons.length; i++) {
             let couponBtn = document.createElement('li');
-            couponBtn.innerHTML = `<button type="button" data-coupon-number="${i}" class="next-btn next-medium next-btn-primary">Получить номинал</button>`;
+            couponBtn.innerHTML = `<button type="button" data-coupon-number="${i}" class="use-link-button-show">Получить номинал</button>`;
             coupons[i].append(couponBtn);
         }
         document.querySelector('.use-coupons-list-container').addEventListener('click', eventHandler);
@@ -47,9 +47,11 @@
         }
         navigator.clipboard.writeText(str).then(function () {
             console.log('Async: Copying to clipboard was successful!');
+            elem.classList.remove("use-link-button-show");
+            elem.classList.add("coupon-valid-status");
+            setTimeout(() => {elem.classList.remove("coupon-valid-status"); elem.classList.add("use-link-button-show");}, 500);
         }, function (err) {
             console.error('Async: Could not copy text: ', err);
         });
     }
-
 })();
