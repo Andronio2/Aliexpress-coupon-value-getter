@@ -36,13 +36,13 @@
         if (couponValue.startsWith("US $")) {
             couponValue = couponValue.match(/\d{1,2}\.\d{2}/g)[0];
             couponFrom = couponFrom.match(/\d{1,2}\.\d{2}/g)[0];
-            couponDate = couponDate.match(/(?<=PT\s-\s)\d{1,2}\s[a-zа-яё]{3}/)[0];
+            couponDate = couponDate.match(/(?<=PT\s-\s)(?:(\d{1,2}\s[a-zA-Zа-яё]{3})|(?:[a-zA-Zа-яё]{3}\s\d{1,2}))/)[0];
             str = `${couponValue}/${couponFrom}$ до ${couponDate}`;
         }
         if (couponValue.endsWith('руб. Off')) {
             couponValue = couponValue.match(/\d{1,4},\d{2}/g)[0];
             couponFrom = couponFrom.match(/\d{1,4},\d{2}/g)[0];
-            couponDate = couponDate.match(/(?<=PT\s-\s)\d{1,2}\s[a-zа-яё]{3}/)[0];
+            couponDate = couponDate.match(/(?<=PT\s-\s)(?:(\d{1,2}\s[a-zA-Zа-яё]{3})|(?:[a-zA-Zа-яё]{3}\s\d{1,2}))/)[0];
             str = `${couponValue}/${couponFrom} руб. до ${couponDate}`;
         }
         navigator.clipboard.writeText(str).then(function () {
